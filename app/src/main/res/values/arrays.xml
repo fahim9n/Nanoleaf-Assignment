@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="color_array">
+        <item>#FF7D26</item>
+        <item>#DD2A2A</item>
+        <item>#008577</item>
+        <item>#2DC7D5</item>
+        <item>#FFFF8D</item>
+        <item>#397ACE</item>
+        <item>#000000</item>
+        <item>#F8C293</item>
+        <item>#D81B60</item>
+        <item>#369C01</item>
+        <item>#C8F8B3</item>
+
+        </string-array>
+
+    
+    <string-array name="device_names">
+        <item>Bedroom Light</item>
+        <item>Kitchen Light</item>
+        <item>Bathroom Light</item>
+        <item>Living Light</item>
+        <item>Children Room Light</item>
+        <item>Reading Room Light</item>
+        <item>Dining Room Light</item>
+        <item>Common Space Light</item>
+        <item>Door Light</item>
+        <item>BalconyLight</item>
+        </string-array>
+
+
+</resources>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Nanoleaf Mobile Assignment</string>
+    <string name="my_devices_text">My Devices</string>
+    <string name="device_name_text">My Room Light</string>
+    <string name="device_id_text">ID: 12345</string>
+    <string name="data">10001 1 34 10010 1 88 10004 1 20 10003 0 100 10007 0 5 10002 0 0 10008 0 41 10005 1 76 10006 0 52 10009 1 10</string>
+</resources>
