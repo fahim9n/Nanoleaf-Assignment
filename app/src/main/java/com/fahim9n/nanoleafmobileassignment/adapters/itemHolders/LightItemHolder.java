@@ -3,6 +3,7 @@ package com.fahim9n.nanoleafmobileassignment.adapters.itemHolders;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.os.Handler;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.SeekBar;
@@ -18,6 +19,7 @@ import com.fahim9n.nanoleafmobileassignment.interfaces.AdapterNotifier;
 import com.fahim9n.nanoleafmobileassignment.interfaces.CommandSender;
 import com.fahim9n.nanoleafmobileassignment.interfaces.UpdateDeviceData;
 import com.fahim9n.nanoleafmobileassignment.model.Device;
+import com.fahim9n.nanoleafmobileassignment.utilites.CommandCenter;
 
 
 public class LightItemHolder extends RecyclerView.ViewHolder
@@ -105,8 +107,25 @@ public class LightItemHolder extends RecyclerView.ViewHolder
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
+
+                long timeDifference =getCurrentTimeMillis()-commandSender.getCommandMap().get(device.getDeviceId());
+
+                if(timeDifference<= CommandCenter.MIN_TIME_INTERVAL){
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            System.out.println("device seekbar val "+seekBar.getProgress()+" time diff "+timeDifference);
+                            commandSender.sendBrightnessCommandRequest(device.getDeviceId(), seekBar.getProgress());
+                        }
+                    },(CommandCenter.MIN_TIME_INTERVAL-timeDifference)+10);
+                }
+
             }
         };
+    }
+
+    public long getCurrentTimeMillis() {
+        return System.currentTimeMillis();
     }
 
 
