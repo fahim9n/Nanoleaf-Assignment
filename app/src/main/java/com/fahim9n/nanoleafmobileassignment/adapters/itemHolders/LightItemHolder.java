@@ -107,21 +107,27 @@ public class LightItemHolder extends RecyclerView.ViewHolder
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
+                System.out.println("device seekbar val "+seekBar.getProgress());
                 long timeDifference =getCurrentTimeMillis()-commandSender.getCommandMap().get(device.getDeviceId());
 
                 if(timeDifference<= CommandCenter.MIN_TIME_INTERVAL){
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            System.out.println("device seekbar val "+seekBar.getProgress()+" time diff "+timeDifference);
-                            commandSender.sendBrightnessCommandRequest(device.getDeviceId(), seekBar.getProgress());
+                            sendBrightnessCommand(seekBar, timeDifference);
                         }
-                    },(CommandCenter.MIN_TIME_INTERVAL-timeDifference)+10);
+                    },(CommandCenter.MIN_TIME_INTERVAL-timeDifference)+50);
+                }else{
+                    sendBrightnessCommand(seekBar, timeDifference);
                 }
 
             }
         };
+    }
+
+    private void sendBrightnessCommand(SeekBar seekBar, long timeDifference) {
+        System.out.println("device seekbar val " + seekBar.getProgress() + " time diff " + timeDifference);
+        commandSender.sendBrightnessCommandRequest(device.getDeviceId(), seekBar.getProgress());
     }
 
     public long getCurrentTimeMillis() {
